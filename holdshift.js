@@ -1,9 +1,30 @@
 
 let checkInputs = document.querySelectorAll(".item input[type='checkbox']");
-console.log(checkInputs);
+let lastCheck;
 
 function handleCheck(e){
-	console.log(this);
+
+	if(e.shiftKey && this.checked){
+		// flag
+		let inBetween=false;
+
+		checkInputs.forEach(checkbox => {
+			if(checkbox===this || checkbox===lastCheck){
+				inBetween =!inBetween;
+				// for the corner items
+			}
+
+			if(inBetween){
+				checkbox.checked = true;
+				// for inbetween items
+			}
+		});
+
+
+	}
+
+	// setting the lastchecked to this
+	lastCheck = this;
 }
 
 
